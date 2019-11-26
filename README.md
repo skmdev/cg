@@ -20,3 +20,9 @@ $ yarn start:dev
 # production mode
 $ yarn start:prod
 ```
+
+## Graphql Schema Generation
+
+```bash
+yarn gen:schema
+```

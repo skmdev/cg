@@ -1,0 +1,28 @@
+scalar Date
+
+type Query {
+  health: Boolean
+}
+
+type Mutation {
+  buttonClick(buttonClickInput: ButtonClickInput): ButtonClickInfo
+}
+
+type Subscription {
+  buttonClicked: ButtonClickInfo
+}
+
+enum ButtonType {
+  ORANGE
+  BLUE
+}
+
+type ButtonClickInfo {
+  id: Int
+  type: String
+  timestamp: Date
+}
+
+input ButtonClickInput {
+  type: ButtonType
+}
