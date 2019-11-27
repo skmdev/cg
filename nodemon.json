@@ -1,0 +1,8 @@
+{
+  "ignore": ["src/client/**/*"],
+  "watch": ["src/**/*"],
+  "ext": "ts,tsx",
+  "execMap": {
+    "ts": "ts-node -r tsconfig-paths/register"
+  }
+}

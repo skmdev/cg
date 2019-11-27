@@ -1,6 +1,6 @@
 ## Description
 
-Simple Graphql Demo
+Simple Game Demo
 
 ## Installation
 
@@ -26,3 +26,10 @@ $ yarn start:prod
 ```bash
 yarn gen:schema
 ```
+
+## Tech Stack
+
+- TypeScript
+- Nestjs
+- Nextjs
+- GraphQL
