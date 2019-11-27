@@ -63,13 +63,13 @@ const DashboardPage: React.NextFunctionComponent = props => {
       <CenterTextContiner>
         <Row>
           {'Please go to '}
-          <a href="https://game.clpsec.com/client">
-            https://game.clpsec.com/client
+          <a href={`http://${process.env.HOST_NAME}/client`}>
+            {`http://${process.env.HOST_NAME}/client`}
           </a>
           {' to join the game.'}
         </Row>
         <Row>
-          <QRCode value="https://game.clpsec.com/client" size={180} />
+          <QRCode value={`http://${process.env.HOST_NAME}/client`} size={180} />
         </Row>
       </CenterTextContiner>
     </DashboardWrapper>

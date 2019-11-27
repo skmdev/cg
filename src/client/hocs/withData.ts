@@ -1,4 +1,3 @@
-import ws from 'ws';
 import withApollo from 'next-with-apollo';
 import fetch from 'isomorphic-unfetch';
 import { ApolloClient } from 'apollo-client';
@@ -10,8 +9,8 @@ import { getMainDefinition } from 'apollo-utilities';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 
 // Update the GraphQL endpoint to any instance of GraphQL that you like
-const GRAPHQL_ENDPOINT = 'http://localhost:3000/graphql';
-const SUBSCRIPTIONS_ENDPOINT = 'ws://localhost:3000/graphql';
+const GRAPHQL_ENDPOINT = `http://${process.env.HOST_NAME}/graphql`;
+const SUBSCRIPTIONS_ENDPOINT = `ws://${process.env.HOST_NAME}/graphql`;
 
 function createLink() {
   const isSSR = !process.browser;
