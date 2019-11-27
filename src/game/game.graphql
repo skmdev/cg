@@ -18,7 +18,6 @@ enum ButtonType {
 }
 
 type ButtonClickInfo {
-  id: Int
   type: String
   timestamp: Date
 }

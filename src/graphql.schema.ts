@@ -15,7 +15,6 @@ export class ButtonClickInput {
 }
 
 export class ButtonClickInfo {
-    id?: number;
     type?: string;
     timestamp?: Date;
 }
