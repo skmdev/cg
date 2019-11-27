@@ -1,9 +1,10 @@
 import { Field, InputType, registerEnumType } from 'type-graphql';
 import { ButtonType } from 'common/enums/button';
 
+// Register enum for type-graphql
 registerEnumType(ButtonType, {
-  name: 'ButtonType', // this one is mandatory
-  description: 'Orange or Blue', // this one is optional
+  name: 'ButtonType',
+  description: 'Orange or Blue',
 });
 
 @InputType()

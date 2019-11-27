@@ -30,7 +30,8 @@ export default function useGame() {
     { name: '5', blue: 0, black: 0, orange: 0 },
   ]);
 
-  function getResult(history: History[]): ResultItem[] {
+  // transform history to result
+  function transformHistoryToResult(history: History[]): ResultItem[] {
     const result = [];
     const [first, ...rest] = history;
 
@@ -59,15 +60,16 @@ export default function useGame() {
 
   useEffect(() => {
     if (isEnd) {
-      setResult(getResult(history));
+      setResult(transformHistoryToResult(history));
     }
   }, [isEnd]);
 
   useSubscription(GAME_SUBSCRIPTION, {
-    skip: isEnd,
+    skip: isEnd, // if skip, then it will unsubscribe socket
     onSubscriptionData: data => {
       if (data.subscriptionData.data.buttonClicked) {
         if (!timer) {
+          // timer inital when first call
           timer = setTimeout(() => {
             setIsEnd(true);
           }, 5000);
