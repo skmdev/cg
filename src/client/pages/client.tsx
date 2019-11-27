@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import BigButton from '@/components/BigButton';
 import { useMutation } from '@apollo/react-hooks';
 import { GAME_MUTATION } from '@/graphql/game';
-import { Head } from 'next/document';
+import { ButtonType } from '@/enums/button';
 
 const ClientPage: React.NextFunctionComponent = props => {
   const [buttonClick] = useMutation(GAME_MUTATION);
 
-  const handleButtonClick = (type: string) => {
+  const handleButtonClick = (type: ButtonType) => {
     buttonClick({ variables: { buttonClickInput: { type } } });
   };
 
@@ -15,12 +15,12 @@ const ClientPage: React.NextFunctionComponent = props => {
     <div>
       <PanelWrapper>
         <Col>
-          <OrangeBigButton onClick={() => handleButtonClick('ORANGE')}>
+          <OrangeBigButton onClick={() => handleButtonClick(ButtonType.Orange)}>
             -
           </OrangeBigButton>
         </Col>
         <Col>
-          <BlueBigButton onClick={() => handleButtonClick('BLUE')}>
+          <BlueBigButton onClick={() => handleButtonClick(ButtonType.Blue)}>
             +
           </BlueBigButton>
         </Col>

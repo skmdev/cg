@@ -1,6 +1,7 @@
 import { GAME_SUBSCRIPTION } from '@/graphql/game';
 import { useSubscription } from '@apollo/react-hooks';
 import { useState, useEffect } from 'react';
+import { ButtonType } from '@/enums/button';
 
 interface History {
   type: string;
@@ -44,8 +45,9 @@ export default function useGame() {
       const secondStats = stats.filter(item => item.second === second);
       result.push({
         name: `${second}`,
-        blue: secondStats.filter(item => item.type === 'BLUE').length,
-        orange: secondStats.filter(item => item.type === 'ORANGE').length,
+        blue: secondStats.filter(item => item.type === ButtonType.Blue).length,
+        orange: secondStats.filter(item => item.type === ButtonType.Orange)
+          .length,
         get black() {
           return this.blue - this.orange;
         },
@@ -78,8 +80,8 @@ export default function useGame() {
 
   return {
     history,
-    orangeCount: history.filter(item => item.type === 'ORANGE').length,
-    blueCount: history.filter(item => item.type === 'BLUE').length,
+    orangeCount: history.filter(item => item.type === ButtonType.Orange).length,
+    blueCount: history.filter(item => item.type === ButtonType.Blue).length,
     result,
   };
 }

@@ -1,21 +1,20 @@
 import { Args, Query, Mutation, Resolver, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
-import { ButtonClickInfo } from '../graphql.schema';
-
-import { ButtonClickInputCto } from './dto/button-click.dto';
+import { ButtonClickInfo } from './model/button';
+import { ButtonClickInput } from './dto/buttonClickInput';
 
 const pubSub = new PubSub();
 
-@Resolver('Game')
+@Resolver(of => ButtonClickInfo)
 export class GameResolvers {
-  @Query('health')
+  @Query(returns => Boolean)
   healthCheck(): boolean {
     return true;
   }
 
-  @Mutation('buttonClick')
+  @Mutation(returns => ButtonClickInfo)
   async buttonClick(
-    @Args('buttonClickInput') input: ButtonClickInputCto,
+    @Args('buttonClickInput') input: ButtonClickInput,
   ): Promise<ButtonClickInfo> {
     const buttonClickInfo: ButtonClickInfo = {
       type: input.type,
@@ -28,7 +27,7 @@ export class GameResolvers {
     return buttonClickInfo;
   }
 
-  @Subscription('buttonClicked')
+  @Subscription(returns => ButtonClickInfo)
   buttonClicked() {
     return pubSub.asyncIterator('buttonClicked');
   }

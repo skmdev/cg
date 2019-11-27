@@ -12,7 +12,7 @@ const dir = dev ? path.join(process.cwd(), './src/client') : '';
   imports: [
     GameModule,
     GraphQLModule.forRoot({
-      typePaths: ['./**/*.graphql'],
+      autoSchemaFile: 'schema.gql',
       installSubscriptionHandlers: true,
     }),
     NextModule.forRoot({ dev, dir }),

@@ -10,7 +10,7 @@ export const GAME_SUBSCRIPTION = gql`
 `;
 
 export const GAME_MUTATION = gql`
-  mutation($buttonClickInput: ButtonClickInput) {
+  mutation($buttonClickInput: ButtonClickInput!) {
     buttonClick(buttonClickInput: $buttonClickInput) {
       type
     }

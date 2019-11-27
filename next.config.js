@@ -7,15 +7,14 @@ const {
   PHASE_PRODUCTION_BUILD,
 } = require('next/constants');
 
-const withPlugins = require('next-compose-plugins');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-
 const nextConfig = {
   useFileSystemPublicRoutes: true,
   distDir: '../../.next',
 };
 
 function withTsConfigPath() {
+  const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
   return {
     webpack: (config, options) => {
       if (config.resolve.plugins) {
@@ -31,9 +30,19 @@ function withTsConfigPath() {
 
 module.exports = (phase, { defaultConfig }) => {
   if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
-    return withPlugins([nextConfig, withTsConfigPath])(phase, {
+    const withPlugins = require('next-compose-plugins');
+
+    return withPlugins([nextConfig, withTsConfigPath], {
+      env: {
+        HOST_NAME:
+          phase === PHASE_PRODUCTION_BUILD
+            ? 'ec2-18-222-228-204.us-east-2.compute.amazonaws.com:3000'
+            : 'localhost:3000',
+      },
+    })(phase, {
       defaultConfig,
     });
   }
+
   return {};
 };
