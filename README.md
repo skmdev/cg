@@ -5,6 +5,7 @@ Simple Game Demo
 ## Installation
 
 ```bash
+# Better to use yarn rather than npm
 $ yarn install
 ```
 
@@ -19,12 +20,9 @@ $ yarn start:dev
 
 # production mode
 $ yarn start:prod
-```
-
-## Graphql Schema Generation
-
-```bash
-yarn gen:schema
+# OR
+$ npm i -g pm2
+$ pm2 start pm2.config.js --env production
 ```
 
 ## Tech Stack
