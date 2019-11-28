@@ -7,10 +7,12 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
+import { getProtocol } from '@/utils';
 
 // Update the GraphQL endpoint to any instance of GraphQL that you like
-const GRAPHQL_ENDPOINT = `http://${process.env.HOST_NAME}/graphql`;
-const SUBSCRIPTIONS_ENDPOINT = `ws://${process.env.HOST_NAME}/graphql`;
+const GRAPHQL_ENDPOINT = `${getProtocol('http')}://${
+  process.env.HOST_NAME
+}/graphql`;
 
 function createLink() {
   const isSSR = !process.browser;
@@ -23,6 +25,9 @@ function createLink() {
   if (isSSR) {
     return httpLink;
   } else {
+    const SUBSCRIPTIONS_ENDPOINT = `${getProtocol('ws')}://${
+      process.env.HOST_NAME
+    }/graphql`;
     const client = new SubscriptionClient(SUBSCRIPTIONS_ENDPOINT, {
       reconnect: true,
     });

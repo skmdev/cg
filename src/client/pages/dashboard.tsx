@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import QRCode from 'qrcode.react';
+import { getProtocol } from '@/utils';
 
 const DashboardPage: React.NextFunctionComponent = props => {
   const { orangeCount, blueCount, result } = useGame();
@@ -63,13 +64,16 @@ const DashboardPage: React.NextFunctionComponent = props => {
       <CenterTextContiner>
         <Row>
           {'Please go to '}
-          <a href={`http://${process.env.HOST_NAME}/client`}>
-            {`http://${process.env.HOST_NAME}/client`}
+          <a href={`${getProtocol('http')}://${process.env.HOST_NAME}/client`}>
+            {`${getProtocol('http')}://${process.env.HOST_NAME}/client`}
           </a>
           {' to join the game.'}
         </Row>
         <Row>
-          <QRCode value={`http://${process.env.HOST_NAME}/client`} size={180} />
+          <QRCode
+            value={`${getProtocol('http')}://${process.env.HOST_NAME}/client`}
+            size={180}
+          />
         </Row>
       </CenterTextContiner>
     </DashboardWrapper>

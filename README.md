@@ -19,10 +19,8 @@ $ yarn start
 $ yarn start:dev
 
 # production mode
-$ yarn start:prod
-# OR
 $ npm i -g pm2
-$ pm2 start pm2.config.js --env production
+$ yarn start:prod
 ```
 
 ## Tech Stack
