@@ -36,7 +36,7 @@ module.exports = (phase, { defaultConfig }) => {
       env: {
         HOST_NAME:
           phase === PHASE_PRODUCTION_BUILD
-            ? 'ec2-18-222-228-204.us-east-2.compute.amazonaws.com:3000'
+            ? 'ec2-52-15-254-156.us-east-2.compute.amazonaws.com'
             : 'localhost:3000',
       },
     })(phase, {
