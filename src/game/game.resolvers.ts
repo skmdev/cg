@@ -1,7 +1,6 @@
 import { Args, Query, Mutation, Resolver, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
-import { ButtonClickInfo } from './model/button';
-import { ButtonClickInput } from './dto/buttonClickInput';
+import { ButtonClickInfo, ButtonClickInput } from './schema';
 
 const pubSub = new PubSub();
 
@@ -21,9 +20,11 @@ export class GameResolvers {
       timestamp: new Date(),
     };
 
+    // publish message
     pubSub.publish('buttonClicked', {
       buttonClicked: buttonClickInfo,
     });
+
     return buttonClickInfo;
   }
 
